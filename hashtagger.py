@@ -1,16 +1,18 @@
 import sys
 import random
 
-def main():
+def main(n):
     with open('dictionary.txt', 'r') as f:
-        word_list = f.readlines()
-        n = int(sys.argv[1])
-        chosen = random.sample(word_list, n)
-        chosen = map(append_hashtag, chosen)
-        print ', '.join(chosen)
+        hashtags = map(
+            ht_format, 
+            random.sample(f.readlines(), n)
+        )
 
-def append_hashtag(word):
+    print ', '.join(hashtags)
+
+def ht_format(word):
     return '#' + word.strip()
 
 if __name__ == '__main__':
-    main()
+    n = int(sys.argv[1])
+    main(n)
